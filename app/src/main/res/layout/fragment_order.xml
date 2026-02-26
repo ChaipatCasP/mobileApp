@@ -172,28 +172,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:paddingEnd="12dp"
             android:paddingTop="20dp"
             android:paddingBottom="12dp">
 
-            <TextView
-                android:id="@+id/tvGreeting"
-                android:layout_width="wrap_content"
+            <!-- Greeting + Title -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Good morning ☕"
-                android:textColor="@color/text_subtitle"
-                android:textSize="13sp" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="What&#x27;s selling?"
-                android:textColor="@color/text_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="2dp" />
+                <TextView
+                    android:id="@+id/tvGreeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good morning ☕"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What&#x27;s selling?"
+                    android:textColor="@color/text_title"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Home Button -->
+            <ImageButton
+                android:id="@+id/btnHome"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_home"
+                android:background="@drawable/bg_circle_gray"
+                android:contentDescription="Home"
+                android:padding="10dp"
+                app:tint="@color/text_title" />
         </LinearLayout>
 
         <!-- Category Filter -->

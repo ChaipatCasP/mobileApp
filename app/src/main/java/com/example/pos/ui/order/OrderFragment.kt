@@ -138,6 +138,16 @@ class OrderFragment : Fragment() {
     }
 
     private fun setupBottomTabs() {
+        // Home button → navigate back to Home screen
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(
+                R.id.nav_home,
+                null,
+                androidx.navigation.NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .build()
+            )
+        }
         // Inventory tab → navigate to Inventory screen
         binding.tabInventory.setOnClickListener {
             findNavController().navigate(
