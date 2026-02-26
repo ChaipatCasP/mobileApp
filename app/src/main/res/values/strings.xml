@@ -20,4 +20,9 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_subtitle">Point of Sale System</string>
+    <string name="menu_logout">ออกจากระบบ</string>
+    <string name="logout_confirm_title">ออกจากระบบ</string>
+    <string name="logout_confirm_message">คุณต้องการออกจากระบบใช่หรือไม่?</string>
+    <string name="confirm">ยืนยัน</string>
+    <string name="cancel">ยกเลิก</string>
 </resources>

@@ -1,15 +1,19 @@
 package com.example.pos.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import com.example.pos.data.LoginRepository
-import com.example.pos.data.Result
-
+import androidx.lifecycle.viewModelScope
 import com.example.pos.R
+import com.example.pos.service.ApiResult
+import com.example.pos.service.auth.AuthService
+import com.example.pos.service.auth.LoginRequest
+import kotlinx.coroutines.launch
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel : ViewModel() {
+
+    private val authService = AuthService()
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -18,14 +22,23 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
-
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+        viewModelScope.launch {
+            when (val result = authService.login(
+                LoginRequest(username = username, password = password)
+            )) {
+                is ApiResult.Success -> {
+                    _loginResult.value = LoginResult(
+                        success = LoggedInUserView(displayName = result.data.displayName)
+                    )
+                }
+                is ApiResult.HttpError -> {
+                    // message มาจาก API เช่น "Cannot find User..."
+                    _loginResult.value = LoginResult(errorMessage = result.message)
+                }
+                is ApiResult.Exception -> {
+                    _loginResult.value = LoginResult(error = R.string.login_failed)
+                }
+            }
         }
     }
 
@@ -39,17 +52,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         }
     }
 
-    // A placeholder username validation check
-    private fun isUserNameValid(username: String): Boolean {
-        return if (username.contains("@")) {
-            Patterns.EMAIL_ADDRESS.matcher(username).matches()
-        } else {
-            username.isNotBlank()
-        }
-    }
+    private fun isUserNameValid(username: String): Boolean =
+        if (username.contains("@")) Patterns.EMAIL_ADDRESS.matcher(username).matches()
+        else username.isNotBlank()
 
-    // A placeholder password validation check
-    private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
-    }
+    private fun isPasswordValid(password: String): Boolean = password.length > 5
 }

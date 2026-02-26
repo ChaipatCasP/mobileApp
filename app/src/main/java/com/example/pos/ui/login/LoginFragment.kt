@@ -2,7 +2,6 @@ package com.example.pos.ui.login
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
@@ -58,10 +57,9 @@ class LoginFragment : Fragment() {
         loginViewModel.loginResult.observe(viewLifecycleOwner, Observer { loginResult ->
             loginResult ?: return@Observer
             loadingProgressBar.visibility = View.GONE
-            loginResult.error?.let { showLoginFailed(it) }
-            loginResult.success?.let {
-                navigateToHome(it)
-            }
+            loginResult.error?.let { showLoginFailed(getString(it)) }
+            loginResult.errorMessage?.let { showLoginFailed(it) }
+            loginResult.success?.let { navigateToHome(it) }
         })
 
         val afterTextChangedListener = object : TextWatcher {
@@ -101,8 +99,8 @@ class LoginFragment : Fragment() {
         findNavController().navigate(R.id.action_loginFragment_to_nav_home)
     }
 
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(requireContext(), errorString, Toast.LENGTH_LONG).show()
+    private fun showLoginFailed(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

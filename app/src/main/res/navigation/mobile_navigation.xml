@@ -31,4 +31,10 @@
             android:id="@+id/action_loginFragment_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="com.example.pos.ui.order.OrderFragment"
+        android:label="Order"
+        tools:layout="@layout/fragment_order" />
 </navigation>

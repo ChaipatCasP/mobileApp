@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- POS Order Screen -->
+    <color name="green_primary">#2DBD81</color>
+    <color name="green_dark">#1FA86E</color>
+    <color name="green_light">#E6F8F1</color>
+    <color name="green_price">#2DBD81</color>
+    <color name="bg_screen">#F5F7FB</color>
+    <color name="text_title">#1A1A2E</color>
+    <color name="text_subtitle">#B0B7C3</color>
+    <color name="text_gray">#9B9B9B</color>
+    <color name="category_unselected_bg">#ECEEF2</color>
+    <color name="category_unselected_text">#5A5F73</color>
+    <color name="cart_bar_bg">#2DBD81</color>
+    <color name="payment_unselected_bg">#F0F2F5</color>
 </resources>
