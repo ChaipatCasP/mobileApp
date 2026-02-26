@@ -52,6 +52,17 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // Auto-skip login if token already saved
+        if (TokenManager.isLoggedIn()) {
+            navController.navigate(
+                R.id.action_loginFragment_to_nav_home,
+                null,
+                androidx.navigation.NavOptions.Builder()
+                    .setPopUpTo(R.id.loginFragment, true)
+                    .build()
+            )
+        }
+
         // Handle drawer item selection — intercept logout
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
