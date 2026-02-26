@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pos.R
 import com.example.pos.databinding.FragmentOrderBinding
@@ -41,6 +42,7 @@ class OrderFragment : Fragment() {
         setupCategories()
         observeViewModel()
         setupCartBar()
+        setupBottomTabs()
     }
 
     private fun setupGreeting() {
@@ -133,6 +135,23 @@ class OrderFragment : Fragment() {
                 CheckoutBottomSheet().show(childFragmentManager, "checkout")
             }
         }
+    }
+
+    private fun setupBottomTabs() {
+        // Inventory tab → navigate to Inventory screen
+        binding.tabInventory.setOnClickListener {
+            findNavController().navigate(
+                R.id.nav_inventory,
+                null,
+                androidx.navigation.NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .build()
+            )
+        }
+        // Sales tab → already here, no-op
+        binding.tabSales.setOnClickListener { }
+        // Reports tab → placeholder
+        binding.tabReports.setOnClickListener { }
     }
 
     override fun onDestroyView() {

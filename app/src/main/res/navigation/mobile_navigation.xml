@@ -37,4 +37,10 @@
         android:name="com.example.pos.ui.order.OrderFragment"
         android:label="Order"
         tools:layout="@layout/fragment_order" />
+
+    <fragment
+        android:id="@+id/nav_inventory"
+        android:name="com.example.pos.ui.inventory.InventoryFragment"
+        android:label="Inventory"
+        tools:layout="@layout/fragment_inventory" />
 </navigation>
