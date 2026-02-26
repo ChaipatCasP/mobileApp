@@ -150,8 +150,16 @@ class OrderFragment : Fragment() {
         }
         // Sales tab → already here, no-op
         binding.tabSales.setOnClickListener { }
-        // Reports tab → placeholder
-        binding.tabReports.setOnClickListener { }
+        // Reports tab → navigate to Reports screen
+        binding.tabReports.setOnClickListener {
+            findNavController().navigate(
+                R.id.nav_reports,
+                null,
+                androidx.navigation.NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .build()
+            )
+        }
     }
 
     override fun onDestroyView() {

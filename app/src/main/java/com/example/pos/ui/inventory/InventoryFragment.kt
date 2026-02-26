@@ -81,8 +81,16 @@ class InventoryFragment : Fragment() {
         }
         // Inventory tab → already here, no-op
         binding.tabInventory.setOnClickListener { }
-        // Reports tab → placeholder
-        binding.tabReports.setOnClickListener { }
+        // Reports tab → navigate to Reports screen
+        binding.tabReports.setOnClickListener {
+            findNavController().navigate(
+                R.id.nav_reports,
+                null,
+                androidx.navigation.NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .build()
+            )
+        }
     }
 
     private fun observeCartBadge() {

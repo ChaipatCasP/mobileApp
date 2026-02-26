@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         // Hide toolbar, FAB, and lock drawer on the login/order screen
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.loginFragment || destination.id == R.id.nav_order || destination.id == R.id.nav_inventory) {
+            if (destination.id == R.id.loginFragment || destination.id == R.id.nav_order || destination.id == R.id.nav_inventory || destination.id == R.id.nav_reports) {
                 binding.appBarMain.toolbar.visibility = View.GONE
                 binding.appBarMain.fab.visibility = View.GONE
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
