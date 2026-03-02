@@ -21,4 +21,19 @@
     <color name="category_unselected_text">#5A5F73</color>
     <color name="cart_bar_bg">#2DBD81</color>
     <color name="payment_unselected_bg">#F0F2F5</color>
+
+    <!-- Table Status Colors -->
+    <color name="table_available_bg">#E8F8EF</color>
+    <color name="table_available_stroke">#2DBD81</color>
+    <color name="table_available_text">#2DBD81</color>
+    <color name="table_occupied_bg">#FFF3E1</color>
+    <color name="table_occupied_stroke">#F5941F</color>
+    <color name="table_occupied_text">#F5941F</color>
+    <color name="table_reserved_bg">#EBF0FA</color>
+    <color name="table_reserved_stroke">#4B85E0</color>
+    <color name="table_reserved_text">#4B85E0</color>
+    <color name="table_title_dark">#1A1A2E</color>
+    <color name="table_subtitle">#6B7280</color>
+    <color name="segment_bg">#EEEEEE</color>
+    <color name="blue_primary">#4B85E0</color>
 </resources>
