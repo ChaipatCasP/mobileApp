@@ -1,16 +1,13 @@
 package com.example.pos.service.table
 
+import com.example.pos.service.ApiClient
 import com.example.pos.service.ApiResult
 import com.example.pos.service.BaseApiService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import okhttp3.Request
 
 /**
  * Service สำหรับจัดการโต๊ะ
  *
- * API: http://localhost:3000/api/tables
- * (ในอีมูเลเตอร์ Android ใช้ 10.0.2.2 แทน localhost)
+ * API: GET https://nodeapipos.baby-pat-tac.workers.dev/api/tables
  *
  * Usage:
  * ```
@@ -25,39 +22,28 @@ import okhttp3.Request
  */
 class TableService : BaseApiService() {
 
-    companion object {
-        // สำหรับ Android Emulator: 10.0.2.2 = host machine's localhost
-        // สำหรับ Real Device เปลี่ยนเป็น IP จริงของ server เช่น "http://192.168.1.x:3000"
-        const val TABLE_API_BASE_URL = "http://10.0.2.2:3000"
-    }
+    override val baseUrl = ApiClient.AUTH_BASE_URL
 
     /**
      * ดึงรายการโต๊ะทั้งหมด
      * GET /api/tables
      * Response: { "success": true, "data": [ ... ] }
      */
-    suspend fun getTables(): ApiResult<List<TableModel>> = withContext(Dispatchers.IO) {
-        try {
-            val request = Request.Builder()
-                .url("$TABLE_API_BASE_URL/api/tables")
-                .header("accept", "application/json")
-                .get()
-                .build()
-
-            val response = client.newCall(request).execute()
-            if (response.isSuccessful) {
-                val bodyString = response.body?.string() ?: "{}"
-                val wrapper = gson.fromJson(bodyString, TableApiResponse::class.java)
-                if (wrapper.success) {
-                    ApiResult.Success(wrapper.data)
+    suspend fun getTables(): ApiResult<List<TableModel>> {
+        val result = get<TableApiResponse>(
+            endpoint = "/api/tables",
+            type = type<TableApiResponse>()
+        )
+        return when (result) {
+            is ApiResult.Success -> {
+                if (result.data.success) {
+                    ApiResult.Success(result.data.data)
                 } else {
                     ApiResult.HttpError(200, "API returned success=false")
                 }
-            } else {
-                ApiResult.HttpError(response.code, response.message)
             }
-        } catch (e: Throwable) {
-            ApiResult.Exception(e)
+            is ApiResult.HttpError -> result
+            is ApiResult.Exception -> result
         }
     }
 }

@@ -14,6 +14,9 @@ object ApiClient {
 
     const val BASE_URL = "https://api-staging.jagota.com/Apip"
 
+    /** Base URL สำหรับ POS Node API */
+    const val AUTH_BASE_URL = "https://nodeapipos.baby-pat-tac.workers.dev"
+
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

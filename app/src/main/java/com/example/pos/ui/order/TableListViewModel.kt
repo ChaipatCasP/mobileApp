@@ -41,13 +41,16 @@ class TableListViewModel : ViewModel() {
     private val _reservedCount = MutableLiveData(0)
     val reservedCount: LiveData<Int> = _reservedCount
 
+    private val _dirtyCount = MutableLiveData(0)
+    val dirtyCount: LiveData<Int> = _dirtyCount
+
     init {
         loadTables()
     }
 
     /**
      * โหลดรายการโต๊ะจาก API
-     * GET http://10.0.2.2:3000/api/tables
+     * GET https://nodeapipos.baby-pat-tac.workers.dev/api/tables
      */
     fun loadTables() {
         viewModelScope.launch {
@@ -94,18 +97,19 @@ class TableListViewModel : ViewModel() {
         _availableCount.value = tables.count { it.status == TableStatus.AVAILABLE }
         _occupiedCount.value  = tables.count { it.status == TableStatus.OCCUPIED }
         _reservedCount.value  = tables.count { it.status == TableStatus.RESERVED }
+        _dirtyCount.value     = tables.count { it.status == TableStatus.DIRTY }
     }
 
     /** ข้อมูลตัวอย่าง สำหรับใช้เมื่อ API ไม่พร้อม */
     private fun useMockData() {
-        val mock = listOf(
-            TableModel(1, "T01", "Table 01 (Indoor)",       "โต๊ะ 01 (ในร่ม)",       4,  "", "occupied"),
-            TableModel(2, "T02", "Table 02 (Indoor)",       "โต๊ะ 02 (ในร่ม)",       2,  "", "Available"),
-            TableModel(3, "T03", "Table 03 (Window Side)",  "โต๊ะ 03 (ริมหน้าต่าง)", 2,  "", "Available"),
-            TableModel(4, "V01", "VIP Room A",              "ห้องวีไอพี A",          8,  "", "Available"),
-            TableModel(5, "V02", "VIP Room B",              "ห้องวีไอพี B",          10, "", "reserved"),
-            TableModel(6, "O01", "Outdoor Terrace 1",       "ระเบียงกลางแจ้ง 1",     4,  "", "Available"),
-            TableModel(7, "O02", "Outdoor Terrace 2",       "ระเบียงกลางแจ้ง 2",     4,  "", "occupied"),
+        val mock = listOf<TableModel>(
+            // TableModel(1, "T01", "Table 01 (Indoor)",       "โต๊ะ 01 (ในร่ม)",       4,  "", "occupied"),
+            // TableModel(2, "T02", "Table 02 (Indoor)",       "โต๊ะ 02 (ในร่ม)",       2,  "", "Available"),
+            // TableModel(3, "T03", "Table 03 (Window Side)",  "โต๊ะ 03 (ริมหน้าต่าง)", 2,  "", "Available"),
+            // TableModel(4, "V01", "VIP Room A",              "ห้องวีไอพี A",          8,  "", "Available"),
+            // TableModel(5, "V02", "VIP Room B",              "ห้องวีไอพี B",          10, "", "reserved"),
+            // TableModel(6, "O01", "Outdoor Terrace 1",       "ระเบียงกลางแจ้ง 1",     4,  "", "Available"),
+            // TableModel(7, "O02", "Outdoor Terrace 2",       "ระเบียงกลางแจ้ง 2",     4,  "", "occupied"),
         )
         _allTables.value = mock
         updateCounts(mock)

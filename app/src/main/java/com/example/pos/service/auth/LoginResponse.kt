@@ -3,110 +3,60 @@ package com.example.pos.service.auth
 import com.google.gson.annotations.SerializedName
 
 /**
- * Wrapper ครอบ response จาก API ของ Jagota ทุกตัว
+ * Response จาก POST /api/auth/login
  *
- * top-level JSON:
+ * Success JSON:
  * {
- *   "flag": 1,
- *   "message": "",
- *   "package_name": "ws_connectlogin",
- *   "function_name": "GET_USER_LOGIN",
- *   "records": 1,
- *   "result": [ ... ]
+ *   "success": true,
+ *   "message": "เข้าสู่ระบบสำเร็จ",
+ *   "access_token": "...",
+ *   "refresh_token": "...",
+ *   "session_id": "...",
+ *   "user": { "user_id": "...", "email": "...", "status": "ACTIVE", "roles": [] }
  * }
+ *
+ * Error JSON:
+ * { "success": false, "message": "email หรือ password ไม่ถูกต้อง" }
  */
 data class LoginApiResponse(
-    @SerializedName("flag")
-    val flag: Int = 0,
+    @SerializedName("success")
+    val success: Boolean = false,
 
     @SerializedName("message")
     val message: String? = null,
 
-    @SerializedName("package_name")
-    val packageName: String? = null,
+    @SerializedName("access_token")
+    val accessToken: String? = null,
 
-    @SerializedName("function_name")
-    val functionName: String? = null,
+    @SerializedName("refresh_token")
+    val refreshToken: String? = null,
 
-    @SerializedName("records")
-    val records: Int = 0,
+    @SerializedName("session_id")
+    val sessionId: String? = null,
 
-    @SerializedName("result")
-    val result: List<LoginResultItem> = emptyList()
+    @SerializedName("user")
+    val user: LoginUser? = null
 ) {
-    val firstResult: LoginResultItem? get() = result.firstOrNull()
+    /** true เมื่อ login สำเร็จ และมี access_token */
+    val isSuccess: Boolean get() = success && accessToken != null
+
+    /** ชื่อผู้ใช้งานที่แสดงในแอป */
+    val displayName: String get() = user?.email ?: ""
 }
 
 /**
- * Item ภายใน result[] ของ GET_USER_LOGIN
- *
- * Success → FLAG = "1" + ข้อมูล user ครบ
- * Failure → FLAG = "0" + MSG = error message จาก server
+ * ข้อมูล user ที่ได้จาก response ของ /api/auth/login
  */
-data class LoginResultItem(
-    /** "1" = สำเร็จ, "0" = ไม่สำเร็จ */
-    @SerializedName("FLAG")
-    val flag: String? = null,
+data class LoginUser(
+    @SerializedName("user_id")
+    val userId: String? = null,
 
-    @SerializedName("TYPE")
-    val type: String? = null,
-
-    @SerializedName("INTERNAL")
-    val internal: String? = null,
-
-    @SerializedName("ICODE")
-    val icode: String? = null,
-
-    @SerializedName("CODE")
-    val code: String? = null,
-
-    /** ชื่อภาษาอังกฤษ */
-    @SerializedName("NAME_E")
-    val nameEn: String? = null,
-
-    @SerializedName("STAFF_CODE")
-    val staffCode: String? = null,
-
-    @SerializedName("STAFF_NAME")
-    val staffName: String? = null,
-
-    @SerializedName("LOGIN")
-    val login: String? = null,
-
-    @SerializedName("LOCATION_ID")
-    val locationId: String? = null,
-
-    /** Token สำหรับใส่ใน Authorization header ของทุก request ต่อจากนี้ */
-    @SerializedName("TOKEN_ID")
-    val tokenId: String? = null,
-
-    @SerializedName("EMAIL")
+    @SerializedName("email")
     val email: String? = null,
 
-    @SerializedName("MOBILE")
-    val mobile: String? = null,
+    @SerializedName("status")
+    val status: String? = null,
 
-    @SerializedName("COMPANY")
-    val company: String? = null,
-
-    @SerializedName("POSITION_CODE")
-    val positionCode: String? = null,
-
-    @SerializedName("POSITION_NAME")
-    val positionName: String? = null,
-
-    @SerializedName("CNT_COM")
-    val cntCom: String? = null,
-
-    @SerializedName("ICOM")
-    val icom: String? = null,
-
-    /** Error message เมื่อ FLAG = "0" */
-    @SerializedName("MSG")
-    val errorMessage: String? = null
-) {
-    val isSuccess: Boolean get() = flag == "1"
-
-    /** ชื่อที่แสดงในแอป: nameEn -> staffName -> login -> "" */
-    val displayName: String get() = nameEn ?: staffName ?: login ?: ""
-}
+    @SerializedName("roles")
+    val roles: List<String> = emptyList()
+)

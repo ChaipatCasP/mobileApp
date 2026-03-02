@@ -24,7 +24,7 @@ abstract class BaseApiService {
 
     protected val client = ApiClient.httpClient
     protected val gson = Gson()
-    protected val baseUrl = ApiClient.BASE_URL
+    protected open val baseUrl = ApiClient.BASE_URL
 
     /**
      * ส่ง Multipart/Form-Data POST request แล้ว parse body เป็น [T]

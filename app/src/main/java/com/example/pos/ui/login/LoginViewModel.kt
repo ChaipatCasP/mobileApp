@@ -1,6 +1,5 @@
 package com.example.pos.ui.login
 
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,10 +20,10 @@ class LoginViewModel : ViewModel() {
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
+    fun login(email: String, password: String) {
         viewModelScope.launch {
             when (val result = authService.login(
-                LoginRequest(username = username, password = password)
+                LoginRequest(email = email, password = password)
             )) {
                 is ApiResult.Success -> {
                     _loginResult.value = LoginResult(
@@ -32,7 +31,7 @@ class LoginViewModel : ViewModel() {
                     )
                 }
                 is ApiResult.HttpError -> {
-                    // message มาจาก API เช่น "Cannot find User..."
+                    // message มาจาก API เช่น "email หรือ password ไม่ถูกต้อง"
                     _loginResult.value = LoginResult(errorMessage = result.message)
                 }
                 is ApiResult.Exception -> {
@@ -42,8 +41,8 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun loginDataChanged(username: String, password: String) {
-        if (!isUserNameValid(username)) {
+    fun loginDataChanged(email: String, password: String) {
+        if (!isEmailValid(email)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
@@ -52,9 +51,7 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    private fun isUserNameValid(username: String): Boolean =
-        if (username.contains("@")) Patterns.EMAIL_ADDRESS.matcher(username).matches()
-        else username.isNotBlank()
+    private fun isEmailValid(email: String): Boolean = email.isNotBlank()
 
     private fun isPasswordValid(password: String): Boolean = password.length > 5
 }

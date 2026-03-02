@@ -6,13 +6,14 @@ import com.google.gson.annotations.SerializedName
  * Status ของโต๊ะ
  */
 enum class TableStatus {
-    AVAILABLE, OCCUPIED, RESERVED;
+    AVAILABLE, OCCUPIED, RESERVED, DIRTY;
 
     companion object {
-        /** Parse แบบ case-insensitive เพราะ API คืน "Available" / "occupied" ปนกัน */
+        /** Parse แบบ case-insensitive เพราะ API คืน "Available" / "Occupied" / "Reserved" / "Dirty" */
         fun from(raw: String?): TableStatus = when (raw?.lowercase()) {
             "occupied"  -> OCCUPIED
             "reserved"  -> RESERVED
+            "dirty"     -> DIRTY
             else        -> AVAILABLE
         }
     }

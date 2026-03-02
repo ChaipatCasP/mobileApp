@@ -184,6 +184,7 @@ class TableListFragment : Fragment() {
             TableStatus.RESERVED -> binding.chipReserved.setBackgroundColor(
                 ContextCompat.getColor(ctx, R.color.table_reserved_bg)
             )
+            TableStatus.DIRTY -> { /* no filter chip for dirty */ }
             null -> { /* all reset already */ }
         }
     }

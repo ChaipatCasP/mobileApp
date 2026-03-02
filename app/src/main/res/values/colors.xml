@@ -32,6 +32,9 @@
     <color name="table_reserved_bg">#EBF0FA</color>
     <color name="table_reserved_stroke">#4B85E0</color>
     <color name="table_reserved_text">#4B85E0</color>
+    <color name="table_dirty_bg">#F5F0E8</color>
+    <color name="table_dirty_stroke">#A0856A</color>
+    <color name="table_dirty_text">#A0856A</color>
     <color name="table_title_dark">#1A1A2E</color>
     <color name="table_subtitle">#6B7280</color>
     <color name="segment_bg">#EEEEEE</color>

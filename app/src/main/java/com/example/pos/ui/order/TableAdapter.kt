@@ -31,6 +31,7 @@ class TableAdapter(
                 TableStatus.AVAILABLE -> bindAvailable(table)
                 TableStatus.OCCUPIED  -> bindOccupied(table)
                 TableStatus.RESERVED  -> bindReserved(table)
+                TableStatus.DIRTY     -> bindDirty(table)
             }
 
             binding.root.setOnClickListener { onTableClick(table) }
@@ -66,6 +67,17 @@ class TableAdapter(
             binding.tvStatusLabel.text = "RESERVED"
             binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_reserved_text))
             binding.tvStatusValue.text = "Reserved"
+            binding.tvStatusValue.setTextColor(ContextCompat.getColor(ctx, R.color.table_title_dark))
+        }
+
+        private fun bindDirty(table: TableModel) {
+            val ctx = binding.root.context
+            binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_dirty)
+            binding.ivStatusIcon.setImageResource(R.drawable.ic_close)
+            binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_dirty_text)
+            binding.tvStatusLabel.text = "DIRTY"
+            binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_dirty_text))
+            binding.tvStatusValue.text = "Needs Cleaning"
             binding.tvStatusValue.setTextColor(ContextCompat.getColor(ctx, R.color.table_title_dark))
         }
     }

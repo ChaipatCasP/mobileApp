@@ -3,17 +3,13 @@ package com.example.pos.service.auth
 import com.google.gson.annotations.SerializedName
 
 /**
- * request body สำหรับ GET_USER_LOGIN
+ * Request body สำหรับ POST /api/auth/login
  */
 data class LoginRequest(
-    /** รหัสบริษัท เช่น "JB" */
-    val company: String = "JB",
-    /** ชื่อ User สำหรับ API */
-    val apiUser: String = "DEMO",
-    /** API Key (ถ้ามี) */
-    val apiKey: String = "",
-    /** Username ที่ผู้ใช้กรอก */
-    val username: String,
+    /** อีเมลที่ผู้ใช้กรอก */
+    @SerializedName("email")
+    val email: String,
     /** Password ที่ผู้ใช้กรอก */
+    @SerializedName("password")
     val password: String
 )
