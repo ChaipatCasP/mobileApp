@@ -18,6 +18,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import androidx.core.graphics.toColorInt
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class ReportsFragment : Fragment() {
@@ -91,23 +92,23 @@ class ReportsFragment : Fragment() {
                 position = XAxis.XAxisPosition.BOTTOM
                 granularity = 1f
                 setDrawGridLines(true)
-                gridColor = Color.parseColor("#F0F0F0")
-                axisLineColor = Color.parseColor("#F0F0F0")
-                textColor = Color.parseColor("#9B9B9B")
+                gridColor     = "#F0F0F0".toColorInt()
+                axisLineColor = "#F0F0F0".toColorInt()
+                textColor     = "#9B9B9B".toColorInt()
                 textSize = 11f
                 setDrawAxisLine(false)
             }
 
             axisLeft.apply {
                 setDrawGridLines(true)
-                gridColor = Color.parseColor("#F0F0F0")
-                axisLineColor = Color.parseColor("#F0F0F0")
-                textColor = Color.parseColor("#9B9B9B")
+                gridColor     = "#F0F0F0".toColorInt()
+                axisLineColor = "#F0F0F0".toColorInt()
+                textColor     = "#9B9B9B".toColorInt()
                 textSize = 10f
                 setDrawAxisLine(false)
                 setValueFormatter(object : com.github.mikephil.charting.formatter.ValueFormatter() {
                     override fun getFormattedValue(value: Float): String {
-                        return "\$${value.toInt()}"
+                        return "฿${value.toInt()}"
                     }
                 })
             }

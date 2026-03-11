@@ -150,15 +150,15 @@ class TableListFragment : Fragment() {
         }
 
         viewModel.availableCount.observe(viewLifecycleOwner) { count ->
-            binding.tvAvailableCount.text = "Available ($count)"
+            binding.tvAvailableCount.text = "ว่าง ($count)"
         }
 
         viewModel.occupiedCount.observe(viewLifecycleOwner) { count ->
-            binding.tvOccupiedCount.text = "Occupied ($count)"
+            binding.tvOccupiedCount.text = "มีลูกค้า ($count)"
         }
 
         viewModel.reservedCount.observe(viewLifecycleOwner) { count ->
-            binding.tvReservedCount.text = "Reserved ($count)"
+            binding.tvReservedCount.text = "จอง ($count)"
         }
 
         viewModel.activeFilter.observe(viewLifecycleOwner) { filter ->

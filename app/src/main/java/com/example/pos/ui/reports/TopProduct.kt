@@ -7,6 +7,6 @@ data class TopProduct(
     val imageUrl: String,
     val price: Double
 ) {
-    val priceFormatted: String get() = "$${"%.2f".format(price)}"
+    val priceFormatted: String get() = "฿${"%.0f".format(price)}"
     val rankLabel: String get() = "#$rank"
 }

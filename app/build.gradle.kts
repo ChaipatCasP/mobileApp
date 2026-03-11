@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.mpandroidchart)
     implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.androidx.mediarouter)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

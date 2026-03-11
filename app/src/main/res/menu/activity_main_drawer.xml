@@ -6,26 +6,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_table_list"
             android:icon="@drawable/ic_tables"
-            android:title="Tables / Order" />
+            android:title="@string/menu_tables" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_inventory"
+            android:icon="@drawable/ic_inventory"
+            android:title="@string/menu_inventory" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_reports"
+            android:icon="@drawable/ic_reports"
+            android:title="@string/menu_reports" />
     </group>
 
     <group android:id="@+id/group_bottom">
+        <item
+            android:id="@+id/nav_table_list_maneger"
+            android:icon="@drawable/ic_reports"
+            android:title="จัดการโต๊ะ" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
             android:title="@string/menu_logout" />
     </group>
+
 </menu>

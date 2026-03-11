@@ -18,8 +18,8 @@ data class InventoryItem(
 
     val stockLabel: String
         get() = when (stockStatus) {
-            StockStatus.IN_STOCK -> "In Stock"
-            StockStatus.LIMITED -> "Limited"
-            StockStatus.LOW_STOCK -> "Low Stock"
+            StockStatus.IN_STOCK  -> "มีสินค้า"
+            StockStatus.LIMITED   -> "เหลือน้อย"
+            StockStatus.LOW_STOCK -> "สินค้าหมด"
         }
 }

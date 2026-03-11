@@ -25,6 +25,10 @@ class OrderFragment : Fragment() {
     private val viewModel: OrderViewModel by viewModels()
     private lateinit var productAdapter: ProductAdapter
 
+    /** tableId + tableName ที่รับมาจาก TableListFragment */
+    private val tableId: Int get() = arguments?.getInt("tableId", 0) ?: 0
+    private val tableName: String get() = arguments?.getString("tableName", "") ?: ""
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,12 +52,13 @@ class OrderFragment : Fragment() {
     private fun setupGreeting() {
         val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val greeting = when {
-            hour < 12 -> "Good morning ☕"
-            hour < 17 -> "Good afternoon ☀️"
-            else -> "Good evening 🌙"
+            hour < 12 -> "สวัสดีตอนเช้า ☕"
+            hour < 17 -> "สวัสดีตอนบ่าย ☀️"
+            else      -> "สวัสดีตอนเย็น 🌙"
         }
         val userName = TokenManager.getUserName()
-        binding.tvGreeting.text = if (userName.isNotEmpty()) "$greeting, $userName" else greeting
+        val tableInfo = if (tableName.isNotEmpty()) " · $tableName" else ""
+        binding.tvGreeting.text = if (userName.isNotEmpty()) "$greeting, $userName$tableInfo" else "$greeting$tableInfo"
     }
 
     private fun setupProductGrid() {
@@ -117,11 +122,17 @@ class OrderFragment : Fragment() {
             updateCategoryPills(category)
         }
 
-        CartManager.items.observe(viewLifecycleOwner) { items ->
+        // Loading indicator
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+        }
+
+        CartManager.items.observe(viewLifecycleOwner) {
             val count = CartManager.totalCount
             if (count > 0) {
                 binding.cartBar.visibility = View.VISIBLE
-                binding.tvCartCount.text = "$count item${if (count > 1) "s" else ""}"
+                val label = if (count > 1) "$count รายการ" else "1 รายการ"
+                binding.tvCartCount.text = label
                 binding.tvCartTotal.text = CartManager.totalAmountFormatted
             } else {
                 binding.cartBar.visibility = View.GONE
@@ -132,42 +143,34 @@ class OrderFragment : Fragment() {
     private fun setupCartBar() {
         binding.cartBar.setOnClickListener {
             if (CartManager.totalCount > 0) {
-                CheckoutBottomSheet().show(childFragmentManager, "checkout")
+                val sheet = CheckoutBottomSheet().apply {
+                    arguments = Bundle().apply {
+                        putInt("tableId", tableId)
+                    }
+                }
+                sheet.show(childFragmentManager, "checkout")
             }
         }
     }
 
     private fun setupBottomTabs() {
-        // Home button → navigate back to Home screen
         binding.btnHome.setOnClickListener {
             findNavController().navigate(
-                R.id.nav_home,
-                null,
-                androidx.navigation.NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .build()
+                R.id.nav_home, null,
+                androidx.navigation.NavOptions.Builder().setLaunchSingleTop(true).build()
             )
         }
-        // Inventory tab → navigate to Inventory screen
         binding.tabInventory.setOnClickListener {
             findNavController().navigate(
-                R.id.nav_inventory,
-                null,
-                androidx.navigation.NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .build()
+                R.id.nav_inventory, null,
+                androidx.navigation.NavOptions.Builder().setLaunchSingleTop(true).build()
             )
         }
-        // Sales tab → already here, no-op
         binding.tabSales.setOnClickListener { }
-        // Reports tab → navigate to Reports screen
         binding.tabReports.setOnClickListener {
             findNavController().navigate(
-                R.id.nav_reports,
-                null,
-                androidx.navigation.NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .build()
+                R.id.nav_reports, null,
+                androidx.navigation.NavOptions.Builder().setLaunchSingleTop(true).build()
             )
         }
     }

@@ -63,7 +63,7 @@ class InventoryFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.filteredItems.observe(viewLifecycleOwner) { items ->
             adapter.submitList(items)
-            binding.tvProductCount.text = "${items.size} products"
+            binding.tvProductCount.text = "${items.size} รายการ"
         }
     }
 

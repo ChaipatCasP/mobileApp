@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sales"
+                android:text="ขาย"
                 android:textColor="@color/text_gray"
                 android:textSize="11sp"
                 android:layout_marginTop="2dp" />
@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inventory"
+                android:text="สินค้า"
                 android:textColor="@color/text_gray"
                 android:textSize="11sp"
                 android:layout_marginTop="2dp" />
@@ -104,7 +104,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reports"
+                android:text="รายงาน"
                 android:textColor="@color/green_primary"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -140,7 +140,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sales Report"
+                    android:text="รายงานยอดขาย"
                     android:textColor="@color/text_title"
                     android:textSize="26sp"
                     android:textStyle="bold" />
@@ -148,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This week&#x2019;s overview"
+                    android:text="สรุปยอดขายประจำสัปดาห์"
                     android:textColor="@color/text_subtitle"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp" />
@@ -179,7 +179,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$"
+                        android:text="฿"
                         android:textColor="@color/green_primary"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -188,7 +188,7 @@
                         android:id="@+id/tvRevenue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$12.6k"
+                        android:text="฿0"
                         android:textColor="@color/text_title"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -197,7 +197,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Revenue"
+                        android:text="รายได้"
                         android:textColor="@color/text_subtitle"
                         android:textSize="11sp"
                         android:layout_marginTop="2dp" />
@@ -235,7 +235,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Orders"
+                        android:text="ออเดอร์"
                         android:textColor="@color/text_subtitle"
                         android:textSize="11sp"
                         android:layout_marginTop="2dp" />
@@ -263,7 +263,7 @@
                         android:id="@+id/tvAvgOrder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$25"
+                        android:text="฿0"
                         android:textColor="@color/text_title"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -272,7 +272,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Avg Order"
+                        android:text="เฉลี่ย/ออเดอร์"
                         android:textColor="@color/text_subtitle"
                         android:textSize="11sp"
                         android:layout_marginTop="2dp" />
@@ -299,7 +299,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daily Revenue"
+                        android:text="รายได้รายวัน"
                         android:textColor="@color/text_title"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -319,7 +319,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="12dp"
-                android:text="Top Products"
+                android:text="สินค้าขายดี"
                 android:textColor="@color/text_title"
                 android:textSize="18sp"
                 android:textStyle="bold" />

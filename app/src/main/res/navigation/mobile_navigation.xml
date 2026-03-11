@@ -5,38 +5,41 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/loginFragment">
 
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.pos.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.pos.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.pos.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+    <!-- Login -->
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.pos.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Home Dashboard -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.pos.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_tableList"
+            app:destination="@id/nav_table_list" />
+        <action
+            android:id="@+id/action_home_to_inventory"
+            app:destination="@id/nav_inventory" />
+        <action
+            android:id="@+id/action_home_to_reports"
+            app:destination="@id/nav_reports" />
     </fragment>
 
     <!-- Table List (entry point for Order workflow) -->
     <fragment
         android:id="@+id/nav_table_list"
         android:name="com.example.pos.ui.order.TableListFragment"
-        android:label="Tables"
+        android:label="@string/menu_tables"
         tools:layout="@layout/fragment_table_list">
         <action
             android:id="@+id/action_tableList_to_order"
@@ -59,15 +62,18 @@
             android:defaultValue="" />
     </fragment>
 
+    <!-- Inventory / Menu -->
     <fragment
         android:id="@+id/nav_inventory"
         android:name="com.example.pos.ui.inventory.InventoryFragment"
-        android:label="Inventory"
+        android:label="@string/menu_inventory"
         tools:layout="@layout/fragment_inventory" />
 
+    <!-- Sales Reports -->
     <fragment
         android:id="@+id/nav_reports"
         android:name="com.example.pos.ui.reports.ReportsFragment"
-        android:label="Reports"
+        android:label="@string/menu_reports"
         tools:layout="@layout/fragment_reports" />
+
 </navigation>

@@ -1,29 +1,47 @@
 <resources>
-    <string name="app_name">POS</string>
+    <string name="app_name">POSXX</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">POSXX</string>
+    <string name="nav_header_subtitle">Point of Sale v1.0</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">หน้าหลัก</string>
+    <string name="menu_tables">โต๊ะ / สั่งอาหาร</string>
+    <string name="menu_inventory">สินค้า / เมนู</string>
+    <string name="menu_reports">รายงานยอดขาย</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <!-- Strings related to login -->
+
+    <!-- Login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
+    <string name="action_sign_in_short">เข้าสู่ระบบ</string>
+    <string name="welcome">ยินดีต้อนรับ, </string>
     <string name="invalid_username">กรุณากรอก Username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="login_subtitle">Point of Sale System</string>
+    <string name="invalid_password">Password ต้องมีอย่างน้อย 5 ตัวอักษร</string>
+    <string name="login_failed">เข้าสู่ระบบไม่สำเร็จ</string>
+    <string name="login_subtitle">ระบบจัดการร้านอาหาร</string>
+
+    <!-- Logout -->
     <string name="menu_logout">ออกจากระบบ</string>
     <string name="logout_confirm_title">ออกจากระบบ</string>
     <string name="logout_confirm_message">คุณต้องการออกจากระบบใช่หรือไม่?</string>
     <string name="confirm">ยืนยัน</string>
     <string name="cancel">ยกเลิก</string>
+
+    <!-- Home Dashboard -->
+    <string name="home_greeting_morning">สวัสดีตอนเช้า ☕</string>
+    <string name="home_greeting_afternoon">สวัสดีตอนบ่าย ☀️</string>
+    <string name="home_greeting_evening">สวัสดีตอนเย็น 🌙</string>
+    <string name="home_quick_actions">Quick Actions</string>
+    <string name="home_system_info">ข้อมูลระบบ</string>
+    <string name="home_today_sales">ยอดขายวันนี้</string>
+    <string name="home_today_orders">ออเดอร์วันนี้</string>
+    <string name="home_version">เวอร์ชัน</string>
+    <string name="home_today">วันที่</string>
+    <string name="app_version">1.0.0</string>
 </resources>

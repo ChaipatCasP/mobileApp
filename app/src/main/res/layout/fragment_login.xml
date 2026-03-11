@@ -5,8 +5,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/bg_screen"
     tools:context=".ui.login.LoginFragment">
+
+    <!-- Top green accent band -->
+    <View
+        android:id="@+id/topBand"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_home_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Card container -->
     <com.google.android.material.card.MaterialCardView
@@ -15,13 +25,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45">
+        app:layout_constraintVertical_bias="0.42">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +56,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="4dp"
                 android:text="@string/app_name"
-                android:textColor="#1A237E"
+                android:textColor="@color/green_dark"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -57,13 +67,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="28dp"
                 android:text="@string/login_subtitle"
-                android:textColor="#757575"
+                android:textColor="@color/text_subtitle"
                 android:textSize="13sp" />
 
             <!-- Username field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/POS.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -82,7 +92,7 @@
             <!-- Password field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/POS.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
@@ -108,7 +118,8 @@
                 android:enabled="false"
                 android:text="@string/action_sign_in_short"
                 android:textSize="16sp"
-                app:cornerRadius="8dp" />
+                app:cornerRadius="10dp"
+                app:backgroundTint="@color/green_primary" />
 
             <!-- Loading -->
             <ProgressBar

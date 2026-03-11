@@ -3,7 +3,6 @@ package com.example.pos
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +13,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.example.pos.databinding.ActivityMainBinding
 import com.example.pos.service.TokenManager
 import com.example.pos.service.auth.AuthService
@@ -35,19 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
+        // Only nav_home shows the toolbar + open drawer
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
+            setOf(R.id.nav_home),
+            drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -67,35 +60,27 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_logout -> {
-                    drawerLayout.closeDrawer(Gravity.LEFT)
+                    drawerLayout.closeDrawer(Gravity.START)
                     showLogoutConfirmDialog()
                     true
                 }
                 else -> {
-                    // ให้ Navigation Component จัดการ fragment อื่นตามปกติ
-                    val handled = navView.menu.findItem(menuItem.itemId) != null
                     navController.navigate(menuItem.itemId)
-                    drawerLayout.closeDrawer(Gravity.LEFT)
-                    handled
+                    drawerLayout.closeDrawer(Gravity.START)
+                    true
                 }
             }
         }
 
-        // Hide toolbar, FAB, and lock drawer on the login/order screen
+        // Hide toolbar and lock drawer on all screens except nav_home
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.loginFragment
-                || destination.id == R.id.nav_order
-                || destination.id == R.id.nav_table_list
-                || destination.id == R.id.nav_inventory
-                || destination.id == R.id.nav_reports) {
-                binding.appBarMain.toolbar.visibility = View.GONE
-                binding.appBarMain.fab.visibility = View.GONE
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            } else {
-                binding.appBarMain.toolbar.visibility = View.VISIBLE
-                binding.appBarMain.fab.visibility = View.VISIBLE
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            }
+            val showToolbar = destination.id == R.id.nav_home
+            binding.appBarMain.toolbar.visibility =
+                if (showToolbar) View.VISIBLE else View.GONE
+            drawerLayout.setDrawerLockMode(
+                if (showToolbar) DrawerLayout.LOCK_MODE_UNLOCKED
+                else DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+            )
         }
     }
 
@@ -103,9 +88,7 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.logout_confirm_title))
             .setMessage(getString(R.string.logout_confirm_message))
-            .setPositiveButton(getString(R.string.confirm)) { _, _ ->
-                performLogout()
-            }
+            .setPositiveButton(getString(R.string.confirm)) { _, _ -> performLogout() }
             .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }

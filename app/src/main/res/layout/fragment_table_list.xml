@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TABLES"
+                android:text="โต๊ะ"
                 android:textColor="@color/blue_primary"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ORDERS"
+                android:text="ออเดอร์"
                 android:textColor="@color/text_gray"
                 android:textSize="10sp"
                 android:layout_marginTop="2dp" />
@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MENU"
+                android:text="เมนู"
                 android:textColor="@color/text_gray"
                 android:textSize="10sp"
                 android:layout_marginTop="2dp" />
@@ -96,7 +96,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="4dp">
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true">
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
@@ -105,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MORE"
+                android:text="เพิ่มเติม"
                 android:textColor="@color/text_gray"
                 android:textSize="10sp"
                 android:layout_marginTop="2dp" />
@@ -147,7 +149,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Main Floor"
+                android:text="รายการโต๊ะ"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/table_title_dark"
@@ -187,7 +189,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Table View"
+                android:text="มุมมองโต๊ะ"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/table_title_dark"
@@ -199,7 +201,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Queue List"
+                android:text="รายการคิว"
                 android:textSize="14sp"
                 android:textColor="@color/text_gray"
                 android:background="@android:color/transparent" />
@@ -240,7 +242,7 @@
                         android:id="@+id/tvAvailableCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Available (0)"
+                        android:text="ว่าง (0)"
                         android:textSize="12sp"
                         android:textColor="@color/table_title_dark" />
                 </LinearLayout>
@@ -265,7 +267,7 @@
                         android:id="@+id/tvOccupiedCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Occupied (0)"
+                        android:text="มีลูกค้า (0)"
                         android:textSize="12sp"
                         android:textColor="@color/table_title_dark" />
                 </LinearLayout>
@@ -289,7 +291,7 @@
                         android:id="@+id/tvReservedCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reserved (0)"
+                        android:text="จอง (0)"
                         android:textSize="12sp"
                         android:textColor="@color/table_title_dark" />
                 </LinearLayout>

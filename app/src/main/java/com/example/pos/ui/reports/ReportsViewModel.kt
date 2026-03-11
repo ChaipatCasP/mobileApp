@@ -17,9 +17,9 @@ class ReportsViewModel : ViewModel() {
     val dayLabels: List<String> = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
     val summary = StatSummary(
-        revenue = "\$12.6k",
+        revenue = "฿12,600",
         orders = "493",
-        avgOrder = "\$25"
+        avgOrder = "฿25"
     )
 
     val topProducts: List<TopProduct> = listOf(

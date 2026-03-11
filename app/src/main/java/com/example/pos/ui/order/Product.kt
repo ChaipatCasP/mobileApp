@@ -8,5 +8,5 @@ data class Product(
     /** URL รูปภาพสินค้า */
     val imageUrl: String
 ) {
-    val priceFormatted: String get() = "$${"%.2f".format(price)}"
+    val priceFormatted: String get() = "฿${"%.0f".format(price)}"
 }

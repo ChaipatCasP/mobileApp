@@ -24,60 +24,54 @@ class TableAdapter(
 
         fun bind(table: TableModel) {
             binding.tvTableName.text = table.code
-            // แสดงชื่อโต๊ะ (name_en) แทน seats หรือแสดงทั้งคู่
-            binding.tvSeats.text = "${table.totalSit} Seats  ·  ${table.nameEn}"
+            binding.tvSeats.text     = "${table.totalSit} ที่นั่ง  ·  ${table.nameEn}"
 
             when (table.status) {
-                TableStatus.AVAILABLE -> bindAvailable(table)
-                TableStatus.OCCUPIED  -> bindOccupied(table)
-                TableStatus.RESERVED  -> bindReserved(table)
-                TableStatus.DIRTY     -> bindDirty(table)
+                TableStatus.AVAILABLE -> bindStyle(table.status)
+                TableStatus.OCCUPIED  -> bindStyle(table.status)
+                TableStatus.RESERVED  -> bindStyle(table.status)
+                TableStatus.DIRTY     -> bindStyle(table.status)
             }
 
             binding.root.setOnClickListener { onTableClick(table) }
         }
 
-        private fun bindAvailable(table: TableModel) {
+        private fun bindStyle(status: TableStatus) {
             val ctx = binding.root.context
-            binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_available)
-            binding.ivStatusIcon.setImageResource(R.drawable.ic_check_circle)
-            binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_available_text)
-            binding.tvStatusLabel.text = "AVAILABLE"
-            binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_available_text))
-            binding.tvStatusValue.text = "Ready"
-            binding.tvStatusValue.setTextColor(ContextCompat.getColor(ctx, R.color.table_title_dark))
-        }
-
-        private fun bindOccupied(table: TableModel) {
-            val ctx = binding.root.context
-            binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_occupied)
-            binding.ivStatusIcon.setImageResource(R.drawable.ic_timer)
-            binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_occupied_text)
-            binding.tvStatusLabel.text = "OCCUPIED"
-            binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_occupied_text))
-            binding.tvStatusValue.text = "In Use"
-            binding.tvStatusValue.setTextColor(ContextCompat.getColor(ctx, R.color.table_title_dark))
-        }
-
-        private fun bindReserved(table: TableModel) {
-            val ctx = binding.root.context
-            binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_reserved)
-            binding.ivStatusIcon.setImageResource(R.drawable.ic_event)
-            binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_reserved_text)
-            binding.tvStatusLabel.text = "RESERVED"
-            binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_reserved_text))
-            binding.tvStatusValue.text = "Reserved"
-            binding.tvStatusValue.setTextColor(ContextCompat.getColor(ctx, R.color.table_title_dark))
-        }
-
-        private fun bindDirty(table: TableModel) {
-            val ctx = binding.root.context
-            binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_dirty)
-            binding.ivStatusIcon.setImageResource(R.drawable.ic_close)
-            binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_dirty_text)
-            binding.tvStatusLabel.text = "DIRTY"
-            binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_dirty_text))
-            binding.tvStatusValue.text = "Needs Cleaning"
+            when (status) {
+                TableStatus.AVAILABLE -> {
+                    binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_available)
+                    binding.ivStatusIcon.setImageResource(R.drawable.ic_check_circle)
+                    binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_available_text)
+                    binding.tvStatusLabel.text  = "ว่าง"
+                    binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_available_text))
+                    binding.tvStatusValue.text  = "พร้อมรับลูกค้า"
+                }
+                TableStatus.OCCUPIED -> {
+                    binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_occupied)
+                    binding.ivStatusIcon.setImageResource(R.drawable.ic_timer)
+                    binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_occupied_text)
+                    binding.tvStatusLabel.text  = "มีลูกค้า"
+                    binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_occupied_text))
+                    binding.tvStatusValue.text  = "กำลังใช้งาน"
+                }
+                TableStatus.RESERVED -> {
+                    binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_reserved)
+                    binding.ivStatusIcon.setImageResource(R.drawable.ic_event)
+                    binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_reserved_text)
+                    binding.tvStatusLabel.text  = "จอง"
+                    binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_reserved_text))
+                    binding.tvStatusValue.text  = "จองแล้ว"
+                }
+                TableStatus.DIRTY -> {
+                    binding.root.background = ContextCompat.getDrawable(ctx, R.drawable.bg_table_card_dirty)
+                    binding.ivStatusIcon.setImageResource(R.drawable.ic_close)
+                    binding.ivStatusIcon.imageTintList = ContextCompat.getColorStateList(ctx, R.color.table_dirty_text)
+                    binding.tvStatusLabel.text  = "รอทำความสะอาด"
+                    binding.tvStatusLabel.setTextColor(ContextCompat.getColor(ctx, R.color.table_dirty_text))
+                    binding.tvStatusValue.text  = "รอทำความสะอาด"
+                }
+            }
             binding.tvStatusValue.setTextColor(ContextCompat.getColor(ctx, R.color.table_title_dark))
         }
     }

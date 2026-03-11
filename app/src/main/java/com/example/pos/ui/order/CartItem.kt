@@ -5,5 +5,5 @@ data class CartItem(
     var quantity: Int = 1
 ) {
     val subtotal: Double get() = product.price * quantity
-    val subtotalFormatted: String get() = "$${"%.2f".format(subtotal)}"
+    val subtotalFormatted: String get() = "฿${"%.0f".format(subtotal)}"
 }

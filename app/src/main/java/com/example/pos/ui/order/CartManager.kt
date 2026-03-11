@@ -19,7 +19,7 @@ object CartManager {
         get() = _items.value?.sumOf { it.subtotal } ?: 0.0
 
     val totalAmountFormatted: String
-        get() = "$${"%.2f".format(totalAmount)}"
+        get() = "฿${"%.0f".format(totalAmount)}"
 
     val totalCount: Int
         get() = _items.value?.sumOf { it.quantity } ?: 0

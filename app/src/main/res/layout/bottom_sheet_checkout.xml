@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Checkout"
+            android:text="ชำระเงิน"
             android:textColor="@color/text_title"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -187,14 +187,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total"
+                android:text="ยอดรวม"
                 android:textColor="@color/text_subtitle"
                 android:textSize="13sp" />
             <TextView
                 android:id="@+id/tvCheckoutTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$0.00"
+                android:text="฿0"
                 android:textColor="@color/text_title"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -204,7 +204,7 @@
             android:id="@+id/btnCharge"
             android:layout_width="160dp"
             android:layout_height="54dp"
-            android:text="Charge"
+            android:text="ชำระ"
             android:textSize="16sp"
             android:textColor="@android:color/white"
             app:backgroundTint="@color/green_primary"
